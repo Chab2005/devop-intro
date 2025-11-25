@@ -27,20 +27,21 @@ jobs:
       
       - name: Fake-deploy
         run: |
-        git config --global user.name "Github-Actions[bot]"
-        git config --global user.email "github-actions@email.com"
+          git config --global user.name "Github-Actions[bot]" 
+          git config --global user.email "github-actions@email.com"
 
-        mkdir ../gh-pages
-        cp -r dits/* ../gh-pages
-
-        cd ../gh-pages
-        git init
-        git checkout -b gh-pages
-        git add .
-        git commit -m "Deploy to Gtihub Pages"
-
-        git push --force "https://x-acces-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" gh-pages
+          mkdir ../gh-pages
+          cp -r dits/* ../gh-pages
+          
+          cd ../gh-pages
+          git init
+          git checkout -b gh-pages
+          git add .
+          git commit -m "Deploy to Gtihub Pages"
+          
+          git push --force "https://x-acces-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" gh-pages
         
 
         
         
+
