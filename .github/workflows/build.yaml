@@ -34,7 +34,7 @@ jobs:
           git config --global user.email "github-actions@email.com"
 
           mkdir ../gh-pages
-          cp -r dits/* ../gh-pages
+          cp -r dist/* ../gh-pages
           
           cd ../gh-pages
           git init
@@ -47,6 +47,7 @@ jobs:
 
         
         
+
 
 
 
