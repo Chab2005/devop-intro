@@ -1,0 +1,46 @@
+name: BuildWebsite
+
+on:
+  push:  
+    branches:
+      - main
+
+permission:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup
+        uses: actions/setup-node@v3
+        with: 
+          node-version : '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      
+      - name: Fake-deploy
+        run: |
+        git config --global user.name "Github-Actions[bot]"
+        git config --global user.email "github-actions@email.com"
+
+        mkdir ../gh-pages
+        cp -r dits/* ../gh-pages
+
+        cd ../gh-pages
+        git init
+        git checkout -b gh-pages
+        git add .
+        git commit -m "Deploy to Gtihub Pages"
+
+        git push --force "https://x-acces-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}" gh-pages
+        
+
+        
+        
